@@ -10,7 +10,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube-Server') {
+                withSonarQubeEnv('miSonar') {
                     // Ajusta parámetros de tu proyecto
                     sh '''
                         sonar-scanner \
