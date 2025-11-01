@@ -11,7 +11,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('miSonar') {
-                    // Ajusta parámetros de tu proyec
+                    // Ajusta parámetros de tu proyecto
                     sh '''
                         sonar-scanner \
                           -Dsonar.projectKey=labsonar-cursoseg \
