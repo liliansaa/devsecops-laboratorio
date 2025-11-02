@@ -12,7 +12,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('miSonar') {
                     // Ajusta prámetros de tu proyecto
-                    sh '''
+                    bat '''
                         sonar-scanner \
                           -Dsonar.projectKey=labsonar-cursoseg \
                           -Dsonar.sources=. \
