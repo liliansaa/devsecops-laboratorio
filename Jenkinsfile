@@ -17,7 +17,7 @@ pipeline {
                           -Dsonar.projectKey=labsonar-cursoseg \
                           -Dsonar.sources=. \
                           -Dsonar.host.url=$SONAR_HOST_URL \
-                          -Dsonar.login=$SONAR_AUTH_TOKEN
+                          -Dsonar.login=$sonar-token
                     '''
                 }
             }
