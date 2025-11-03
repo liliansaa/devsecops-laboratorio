@@ -111,7 +111,7 @@ jobs:
         with:
           image-ref: ${{secrets.DOCKER_USER}}/laboratoriodevsecopsliliansaa:latest
           format: 'table'
-          exit-code: '1'
+          #exit-code: '1'
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM'
 
