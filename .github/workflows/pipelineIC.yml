@@ -91,7 +91,7 @@ jobs:
           #
           exit 1 
 
-    DockerBuild:
+  DockerBuild:
     needs: SCA
     runs-on: ubuntu-latest
     steps: 
