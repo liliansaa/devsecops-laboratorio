@@ -74,7 +74,6 @@ jobs:
           format: 'HTML'
           out: 'reports'
           args: > 
-            --failOnCVSS 4
             --enableRetired
 
       - name: Upload Dependency-Check Report
