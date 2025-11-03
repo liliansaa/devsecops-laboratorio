@@ -88,4 +88,5 @@ jobs:
         if: failure()
         run: |
           echo "Se han encontrado vulnerabilidades con CVSS >= 4"
+          #
           exit 1 
