@@ -87,7 +87,7 @@ jobs:
       - name:  Check for vulnerabilities
         if: failure()
         run: |
-          echo "Se han encontrado vulnerabilidades con CVSS >= 4"
+          echo "Se ha encontrado vulnerabilidades con CVSS >= 4"
           #exit 1 
 
   DockerBuild:
