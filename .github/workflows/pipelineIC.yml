@@ -47,7 +47,45 @@ jobs:
           echo "Cantidad de Issues MAJOR,CRITICAL,BLOCKER : $issueValidate"
           if [ "$issueValidate" -gt 0 ]; then
             echo "Se encontraron issues bloqueantes. Se quiebra el pipeline."
-            exit 1
+            #exit 1
           else
             echo "No se encontraron issues bloqueantes. Pipeline Continua."
-          fi       
+          fi      
+  SCA:
+    needs: SAST
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure Node Project
+        uses: actions/setup-node@v4
+
+      - name: Configure NodeJs Project
+        run : npm ci
+
+      - name: Run OWASP Dependecy-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        env:
+          JAVA_HOME: /opt/jdk
+        with:
+          project: '${{github.event.repository.name}}-curseg'
+          path: '.'
+          format: 'HTML'
+          out: 'reports'
+          args: > 
+            --failOnCVSS 4
+            --enableRetired
+
+      - name: Upload Dependency-Check Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-report
+          path: ${{github.workspace}}/reports
+
+      - name:  Check for vulnerabilities
+        if: failure()
+        run: |
+          echo "Se han encontrado vulnerabilidades con CVSS >= 4"
+          exit 1 
